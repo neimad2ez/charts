@@ -2,7 +2,7 @@ import { Bar, Line } from 'react-chartjs-2';
 import './App.css'
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend } from 'chart.js';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend);
-// import revenue from "./data/revenueData.json"
+import revenue from "./assets/revenueData.json"
 
 function App() {
 
@@ -10,7 +10,27 @@ function App() {
     <>
       <div className="div">
         
-        <div className="data revenue"></div>
+        <div className="data revenue">
+        <Line
+          data={{
+            labels: revenue.map((data) => data.label),
+            datasets: [
+              {
+                label: "Revenue",
+                data: revenue.map((data) => data.revenue),
+                backgroundColor: "#064FF0",
+                borderColor: "#064FF0",
+              },
+              {
+                label: "Cost",
+                data: revenue.map((data) => data.cost),
+                backgroundColor: "#FF3030",
+                borderColor: "#FF3030",
+              },
+            ],
+          }}
+          />
+        </div>
 
         <div className="data customer">
           <Bar
